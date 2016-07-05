@@ -1,20 +1,46 @@
 function setSerial()
 {
-	//$('#mdserial').removeData("modal");
-	//$("#mdserial #mdserialbody").html('Select a serial device');
+	$('#mdserial').removeData("modal");
+	$("#mdserial #mdserialbody").html('Select a serial device');
 	$('#mdserial').modal('show');
-	//var html='<select class="selectpicker show-tick"  data-width="auto">';
-	/*var onGetDevices = function(ports) 
+	var html='<div class="panel panel-default">\
+                        <div class="panel-heading">\
+                            Select a device\
+                        </div>\
+                        <!-- /.panel-heading -->\
+                        <div class="panel-body">\
+                            <div class="table-responsive">\
+                                <table class="table table-hover" id="tableserial">\
+                                    <thead>\
+                                        <tr>\
+                                            <th>#</th>\
+                                            <th>Path</th>\
+                                        </tr>\
+                                    </thead>\
+                                    <tbody>';
+	var onGetDevices = function(ports) 
 	{
-      for (var i=0; i<ports.length; i++) 
+      //for (var i=0; i<ports.length; i++) 
+	  for (var i=0; i<2; i++)
 	  {
-       console.log(ports[i].path);
-	   html+="<option>"+ports[i].path+"<option>";
+       //console.log(ports[i].path);
+	   html+='<tr class="clickable-row">\
+                                            <td>'+(i+1).toString()+'</td>\
+                                            <td>/dev/ttyACM0</td>\
+                                        </tr>';
       }
-	  html+="</select>"
+	  html+="</tbody>\
+                                </table>\
+                            </div>\
+                            <!-- /.table-responsive -->\
+                        </div>\
+                        <!-- /.panel-body -->\
+                    </div>\
+                    <!-- /.panel -->";
 	  $("#mdserial #mdserialbody").html(html);
-    }*/
+    }
     //chrome.serial.getDevices(onGetDevices);
+	onGetDevices();
 }
 function setBluetooth()
 {
