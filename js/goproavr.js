@@ -8,7 +8,7 @@ function setSerial()
                             Select a device\
                         </div>\
                         <!-- /.panel-heading -->\
-                        <div class="panel-body">\
+                        <div class="panel-body pre-scrollable">\
                             <div class="table-responsive">\
                                 <table class="table table-hover" id="tableserial">\
                                     <thead>\
@@ -38,9 +38,17 @@ function setSerial()
                     </div>\
                     <!-- /.panel -->";
 	  $("#mdserial #mdserialbody").html(html);
+	  $("#mdserialbody .clickable-row").click(function()
+	          {
+                 if($(this).hasClass("bg-info"))
+                 $(this).removeClass('bg-info');
+                 else
+                 $(this).addClass('bg-info').siblings().removeClass('bg-info');
+              });
     }
     //chrome.serial.getDevices(onGetDevices);
 	onGetDevices();
+	
 }
 function setBluetooth()
 {
@@ -78,12 +86,11 @@ $(document).ready(function()
         setArduino();
         //more code here...
     });
+	$("#buttonsetSerial").click(function()
+    {
+       console.log("Set Serial");
+        //more code here...
+    });
 	
-	$(".clickable-row").click(function(){
-    if($(this).hasClass("bg-info"))
-        $(this).removeClass('bg-info');
-    else
-        $(this).addClass('bg-info').siblings().removeClass('bg-info');
-})
 });
 
