@@ -1,3 +1,5 @@
+var contype="";
+var conpath="";
 function setSerial()
 {
 	$('#mdserial').removeData("modal");
@@ -23,7 +25,6 @@ function setSerial()
       for (var i=0; i<ports.length; i++) 
 	  //for (var i=0; i<2; i++)
 	  {
-       console.log(ports[i].path);
 	   html+='<tr class="clickable-row">\
                                             <td>'+(i+1).toString()+'</td>\
                                             <td>'+ports[i].path+'</td>\
@@ -41,10 +42,18 @@ function setSerial()
 	  $("#mdserialbody .clickable-row").click(function()
 	          {
                  if($(this).hasClass("bg-info"))
-                 $(this).removeClass('bg-info');
+				 {
+                  $(this).removeClass('bg-info');
+				  contype="";
+				  conpath="";
+				 }
                  else
+				 {
                  $(this).addClass('bg-info').siblings().removeClass('bg-info');
-			 
+				 contype="serial";
+				 conpath=$(this).find('td:eq(1)').text();
+				 }
+				 console.log("type : "+contype+" path : "+conpath);		 
               });
     }
     chrome.serial.getDevices(onGetDevices);
