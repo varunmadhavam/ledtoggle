@@ -44,6 +44,7 @@ function setSerial()
                  $(this).removeClass('bg-info');
                  else
                  $(this).addClass('bg-info').siblings().removeClass('bg-info');
+			 
               });
     }
     chrome.serial.getDevices(onGetDevices);
