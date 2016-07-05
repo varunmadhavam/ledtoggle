@@ -5,7 +5,7 @@ function setSerial()
 	$('#mdserial').modal('show');
 	var html='<div class="panel panel-default">\
                         <div class="panel-heading">\
-                            Select a device\
+                            Select A Device\
                         </div>\
                         <!-- /.panel-heading -->\
                         <div class="panel-body pre-scrollable">\
@@ -20,13 +20,13 @@ function setSerial()
                                     <tbody>';
 	var onGetDevices = function(ports) 
 	{
-      //for (var i=0; i<ports.length; i++) 
-	  for (var i=0; i<2; i++)
+      for (var i=0; i<ports.length; i++) 
+	  //for (var i=0; i<2; i++)
 	  {
-       //console.log(ports[i].path);
+       console.log(ports[i].path);
 	   html+='<tr class="clickable-row">\
                                             <td>'+(i+1).toString()+'</td>\
-                                            <td>/dev/ttyACM0</td>\
+                                            <td>'+ports[i].path+'</td>\
                                         </tr>';
       }
 	  html+="</tbody>\
@@ -46,8 +46,8 @@ function setSerial()
                  $(this).addClass('bg-info').siblings().removeClass('bg-info');
               });
     }
-    //chrome.serial.getDevices(onGetDevices);
-	onGetDevices();
+    chrome.serial.getDevices(onGetDevices);
+	//onGetDevices();
 	
 }
 function setBluetooth()
