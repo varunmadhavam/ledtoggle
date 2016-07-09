@@ -4,6 +4,6 @@ chrome.app.runtime.onLaunched.addListener(function() {
     innerBounds: {
       width: 320,
       height: 240
-    }
+    },
   });
 });

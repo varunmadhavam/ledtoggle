@@ -16,6 +16,7 @@ function setSerial()
                                     <thead>\
                                         <tr>\
                                             <th>#</th>\
+											<th>Name</th>\
                                             <th>Path</th>\
                                         </tr>\
                                     </thead>\
@@ -27,6 +28,7 @@ function setSerial()
 	  {
 	   html+='<tr class="clickable-row">\
                                             <td>'+(i+1).toString()+'</td>\
+											<td>'+ports[i].displayName+'</td>\
                                             <td>'+ports[i].path+'</td>\
                                         </tr>';
       }
@@ -51,7 +53,7 @@ function setSerial()
 				 {
                  $(this).addClass('bg-info').siblings().removeClass('bg-info');
 				 contype="serial";
-				 conpath=$(this).find('td:eq(1)').text();
+				 conpath=$(this).find('td:eq(2)').text();
 				 }
 				 console.log("type : "+contype+" path : "+conpath);		 
               });
@@ -63,10 +65,40 @@ function setSerial()
 function setBluetooth()
 {
 	$('#mdbluetooth').modal('show');
+	chrome.bluetooth.getAdapterState(function(adapter) {
+    console.log("Adapter " + adapter.address + ": " + adapter.name);
+});
+chrome.bluetooth.getDevices(function(devices) {
+  for (var i = 0; i < devices.length; i++) {
+    console.log(devices[i].name+":"+devices[i].address);
+  }
+});
 }
 function setUsbasp()
 {
-	$('#mdusbasp').modal('show');
+	//$('#mdusbasp').modal('show');
+	chrome.fileSystem.chooseEntry({type: 'openFile'},readfile);
+    function readfile(fileEntry)
+    {
+ if(!fileEntry)
+ {
+  $("#OuptutText").html("User did not choose a file");
+  return;
+ }
+ fileEntry.file(function(file) {
+ var reader = new FileReader();
+ reader.onload = function(e) {
+  //console.log(e.target.result);
+  var text = e.target.result;
+  var lines = text.split(/[\r\n]+/g);
+  for(var i = 0; i < lines.length; i++) 
+   {
+	   console.log(lines[i]);                         
+   }
+ };
+ reader.readAsText(file);
+ });
+}
 }
 function setArduino()
 {
@@ -100,6 +132,20 @@ $(document).ready(function()
     {
        console.log("Set Serial");
         //more code here...
+    });
+	
+	$(".modal-wide").on("show.bs.modal", function() 
+	{
+      var height = $(window).height() - 200;
+      $(this).find(".modal-body").css("max-height", height);
+    });
+	
+	$("#buttonburnflash").click(function()
+    {
+       console.log("Burn Flash");
+       $('#mdburnflash').removeData("modal");
+	  // $("#mdburnflash #mdburnflashbody").html('Select a serial device');
+	   $('#mdburnflash').modal('show');
     });
 	
 });

@@ -23,7 +23,7 @@
     <!-- Custom CSS -->
     <link href="dist/css/sb-admin-2.css" rel="stylesheet">
 	
-	 <link href="css/goproavr.css" rel="stylesheet">
+	<link href="css/goproavr.css" rel="stylesheet">
 
 
     <!-- Custom Fonts -->
@@ -174,17 +174,6 @@
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
-				
-				<li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-circle-o fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#" id="buttonexit"><i class="fa fa-times fa-fw"></i> Exit</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
@@ -200,7 +189,7 @@
                             <a href="#"><i class="fa fa-edit fa-fw"></i> Write<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#" id="buttonburnflash">Flash</a>
+                                    <a href="#">Flash</a>
                                 </li>
                                 <li>
                                     <a href="#">Eeprom</a>
@@ -275,98 +264,19 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Quick Access Functions</h1>
+                    <h1 class="page-header">Burn Flash</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-upload fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-center">                                  
-                                    <div>Burn Flash</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">Get Started</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-sign-in fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div>Read Flash</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">Get Started</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-ticket   fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div>Set Fuse</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">Get Started</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-save fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div>Backup Chip</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">Get Started</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-			<div class="row" id="bottomrow">
+			<div class="col-lg-12">
+			<label class="btn btn-block btn-info btn-file">
+            Load Hex <input type="file" style="display: none;">
+            </label>
+			</div>
+            </div>    
+			<div class="row">
 			<div class="col-lg-12">
                     <div class="panel panel-info">
                         <div class="panel-heading">
@@ -386,7 +296,7 @@
     <div class="modal-dialog">
 	<div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close fa fa-repeat" data-dismiss="modal">&times;</button>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Set Serial Port</h4>
         </div>
         <div class="modal-body" id="mdserialbody">
@@ -442,122 +352,6 @@
           <p>Support for arduino is currently under development.</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-	  </div>
-      </div>
-	  
-	  
-	  <div class="modal modal-wide fade" id="mdburnflash" role="dialog">
-      <div class="modal-dialog">
-	  <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Burn Flash</h4>
-        </div>
-        <div class="modal-body" id="mdburnflashbody">
-          <label class="btn btn-block btn-info btn-file">
-           Select Hex File<input type="file" style="display: none;">
-          </label>
-		  <br>
-		  <div class="row">
-		     <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Pages
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body pre-scrollable">
-                            <div class="table-responsive table-bordered">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Username</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-				 <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Page Content
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body pre-scrollable">
-                            <div class="table-responsive table-bordered">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Username</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-		  
-		  
-		  </div>
-        </div>
-        <div class="modal-footer">
-		  <button type="button" class="btn btn-danger">Burn</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>

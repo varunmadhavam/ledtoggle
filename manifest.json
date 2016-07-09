@@ -2,7 +2,7 @@
   "name": "Serial Test",
   "version": "3",
   "manifest_version": 2,
-  "permissions": ["serial"],
+  "permissions": ["serial","fileSystem"],
   "minimum_chrome_version": "23",
   "icons": {
     "16": "icon_16.png",
@@ -13,5 +13,9 @@
       "scripts": ["launch.js"],
       "transient": true
     }
-  }
+  },
+  "bluetooth": {
+  "uuids": [ "1105", "1106" ],
+  "socket": true
+}
 }
