@@ -93,7 +93,18 @@ function setUsbasp()
   var lines = text.split(/[\r\n]+/g);
   for(var i = 0; i < lines.length; i++) 
    {
-	   console.log(lines[i]);                         
+	   var line=lines[i];
+	   if(line!=null)
+		   if(line[0]==':')
+		   {
+			   console.log(line[0]);
+		   }
+	       else
+		   {
+			   console.log("error");
+			   break;
+	       }
+	                                  
    }
  };
  reader.readAsText(file);
@@ -146,6 +157,12 @@ $(document).ready(function()
        $('#mdburnflash').removeData("modal");
 	  // $("#mdburnflash #mdburnflashbody").html('Select a serial device');
 	   $('#mdburnflash').modal('show');
+    });
+	
+	$("#buttonexit").click(function()
+    {
+       console.log("Set Serial");
+        //more code here...
     });
 	
 });
