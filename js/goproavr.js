@@ -1,5 +1,3 @@
-var contype="";
-var conpath="";
 function setSerial()
 {
 	$('#mdserial').removeData("modal");
@@ -91,21 +89,34 @@ function setUsbasp()
   //console.log(e.target.result);
   var text = e.target.result;
   var lines = text.split(/[\r\n]+/g);
+  var linecount=0;
   for(var i = 0; i < lines.length; i++) 
    {
 	   var line=lines[i];
 	   if(line!=null)
 		   if(line[0]==':')
 		   {
-			   console.log(line[0]);
+			   if(line.slice(7,9).toString().localeCompare("01")==0)
+			   {
+				   break;
+			   }
+			   if(linecount==0)
+			   {
+				   linecount=1;
+				   startaddress=hexToBytes(line.slice(3,7));
+				   console.log((startaddress[0]<<8) | startaddress[1]);
+			   }
+               hexdata=hexdata+line.slice(9,line.length-2);			   
 		   }
 	       else
 		   {
 			   console.log("error");
+			   error=true;
 			   break;
 	       }
 	                                  
    }
+   console.log(hexToBytes(hexdata));
  };
  reader.readAsText(file);
  });
@@ -166,4 +177,10 @@ $(document).ready(function()
     });
 	
 });
+
+function hexToBytes(hex) {
+    for (var bytes = [], c = 0; c < hex.length; c += 2)
+    bytes.push(parseInt(hex.substr(c, 2), 16));
+    return bytes;
+}
 
