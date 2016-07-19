@@ -74,54 +74,10 @@ chrome.bluetooth.getDevices(function(devices) {
 }
 function setUsbasp()
 {
-	//$('#mdusbasp').modal('show');
-	chrome.fileSystem.chooseEntry({type: 'openFile'},readfile);
-    function readfile(fileEntry)
-    {
- if(!fileEntry)
- {
-  $("#OuptutText").html("User did not choose a file");
-  return;
- }
- fileEntry.file(function(file) {
- var reader = new FileReader();
- reader.onload = function(e) {
-  //console.log(e.target.result);
-  var text = e.target.result;
-  var lines = text.split(/[\r\n]+/g);
-  var linecount=0;
-  for(var i = 0; i < lines.length; i++) 
-   {
-	   var line=lines[i];
-	   if(line!=null)
-		   if(line[0]==':')
-		   {
-			   if(line.slice(7,9).toString().localeCompare("01")==0)
-			   {
-				   break;
-			   }
-			   if(linecount==0)
-			   {
-				   linecount=1;
-				   startaddress=hexToBytes(line.slice(3,7));
-				   console.log((startaddress[0]<<8) | startaddress[1]);
-			   }
-               hexdata=hexdata+line.slice(9,line.length-2);			   
-		   }
-	       else
-		   {
-			   console.log("error");
-			   error=true;
-			   break;
-	       }
-	                                  
-   }
-   console.log(hexToBytes(hexdata));
- };
- reader.readAsText(file);
- });
+	$('#mdusbasp').modal('show');
+	
 }
-}
+
 function setArduino()
 {
 	$('#mdarduino').modal('show');
@@ -135,21 +91,30 @@ $(document).ready(function()
         setSerial();
         //more code here...
     });
+
+    $("#buttonselecthex").click(function()
+    {
+        chrome.fileSystem.chooseEntry({type: 'openFile'},readfile);
+    });
+
     $("#bluetooth").click(function()
     {
         setBluetooth();
         //more code here...
     });
+
 	$("#usbasp").click(function()
     {
         setUsbasp();
         //more code here...
     });
+
 	$("#arduino").click(function()
     {
         setArduino();
         //more code here...
     });
+
 	$("#buttonsetSerial").click(function()
     {
        console.log("Set Serial");
@@ -182,5 +147,58 @@ function hexToBytes(hex) {
     for (var bytes = [], c = 0; c < hex.length; c += 2)
     bytes.push(parseInt(hex.substr(c, 2), 16));
     return bytes;
+}
+
+function toHexString(byteArray) {
+  return byteArray.map(function(byte) {
+    return ('0' + (byte & 0xFF).toString(16)).slice(-2);
+  }).join('')
+}
+
+function readfile(fileEntry)
+{
+  if(!fileEntry)
+   {
+     $("#OuptutText").html("User did not choose a file");
+     return;
+   }
+  fileEntry.file(function(file) {
+  var reader = new FileReader();
+  reader.onload = function(e) {
+  //console.log(e.target.result);
+  var text = e.target.result;
+  var lines = text.split(/[\r\n]+/g);
+  var linecount=0;
+  for(var i = 0; i < lines.length; i++) 
+   {
+	   var line=lines[i];
+	   if(line!=null)
+		   if(line[0]==':')
+		   {
+			   if(line.slice(7,9).toString().localeCompare("01")==0)
+			   {
+				   break;
+			   }
+			   if(linecount==0)
+			   {
+				   linecount=1;
+				   startaddress=hexToBytes(line.slice(3,7));
+				   //console.log(toHexString((startaddress[0]<<8) | startaddress[1]));
+				   console.log(toHexString(startaddress));
+			   }
+               hexdata=hexdata+line.slice(9,line.length-2);			   
+		   }
+	       else
+		   {
+			   console.log("error");
+			   error=true;
+			   break;
+	       }
+	                                  
+   }
+   console.log(hexToBytes(hexdata));
+ };
+ reader.readAsText(file);
+ });
 }
 
