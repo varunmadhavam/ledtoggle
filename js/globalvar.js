@@ -3,7 +3,6 @@ var conpath="";
 var hexdata="";
 var error=false;
 var startaddress;
-
 var chipname="";
 var chipcode=new Uint8Array(3);
 var chipinfo=new Uint32Array(10);// 0->wordsize_flash,1->wordsize_eeprom,2->flash_size,3->eeprom_size,4->pagesize_flash,

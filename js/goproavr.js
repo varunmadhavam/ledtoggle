@@ -141,6 +141,8 @@ $(document).ready(function()
         //more code here...
     });
 	
+	getchips();
+	
 });
 
 function hexToBytes(hex) {
@@ -200,5 +202,25 @@ function readfile(fileEntry)
  };
  reader.readAsText(file);
  });
+}
+
+function getchips()
+{
+	html='';
+	console.log(chips.chips[0].name);
+	for(var i=0;i<chips.chips.length;i++)
+	{
+		html=html+'<li><a href="#"><i class="fa fa-fw"></i>'+chips.chips[i].name+'</a></li>';
+	}						
+	html=html+`<li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>Detect Chip</strong>
+                            </a>
+                        </li>`;
+						
+	$("#chipselectdropdown").html(html);					
+						
+	
 }
 
