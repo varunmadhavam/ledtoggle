@@ -207,10 +207,9 @@ function readfile(fileEntry)
 function getchips()
 {
 	html='';
-	console.log(chips.chips[0].name);
 	for(var i=0;i<chips.chips.length;i++)
 	{
-		html=html+'<li><a href="#"><i class="fa fa-fw"></i>'+chips.chips[i].name+'</a></li>';
+		html=html+'<li id="'+i+'"><a href="#"><i class="fa fa-fw"></i>'+chips.chips[i].name+'</a></li>';
 	}						
 	html=html+`<li class="divider"></li>
                         <li>
@@ -219,8 +218,18 @@ function getchips()
                             </a>
                         </li>`;
 						
-	$("#chipselectdropdown").html(html);					
-						
-	
+	$("#chipselectdropdown").html(html);
+
+	$("#chipselectdropdown li").click(function ()
+	 {
+        //console.log($(this).attr('id'));
+        setchip(parseInt($(this).attr('id')))
+     });					
+							
+}
+
+function setchip(chipindex)
+{
+  console.log(chips.chips[chipindex].name);
 }
 
