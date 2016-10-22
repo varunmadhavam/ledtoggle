@@ -1,8 +1,10 @@
-    .btn-file {
+.btn-file
+{
         position: relative;
         overflow: hidden;
-    }
-    .btn-file input[type=file] {
+}
+.btn-file input[type=file]
+{
         position: absolute;
         top: 0;
         right: 0;
@@ -16,20 +18,24 @@
         background: white;
         cursor: inherit;
         display: block;
-    }
-	.force-to-bottom {
+}
+.force-to-bottom
+{
   position:absolute;
   bottom: 5%;
   width: 100%;
 }
 
-.bottomrow {
+.bottomrow
+{
 display: inline-flex;
 height: 100%;
 }
-.modal.modal-wide .modal-dialog {
+.modal.modal-wide .modal-dialog
+{
   width: 90%;
 }
-.modal-wide .modal-body {
+.modal-wide .modal-body
+{
   overflow-y: auto;
 }
